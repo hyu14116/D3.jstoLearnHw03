@@ -42,6 +42,33 @@
                 
             }
        });
+       var arr = [85, 60, 99, 49, 77, 82];
+
+        bind(arr);
+        render();
+
+        function bind(data) {
+            var selection = d3.select("body").selectAll("div").data(data);
+            selection.enter().append("div");
+            selection.exit().remove();
+        }
+
+        function render() {
+            d3.selectAll("div")
+                .style({
+                    color: function(d) {
+                        if(d<70) {
+                            return "red";
+                        } 
+                        else {
+                            return "black";
+                        }
+                    }
+                })
+                .text(function(d, i) {
+                    return (i + 1) + ":" + d;
+                });
+        }
    </script>
 </body>
 </html>
